@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
-import { IconHeart, IconShoppingCart } from "@tabler/icons-react"
+import { IconHeart, IconMenu2, IconShoppingCart } from "@tabler/icons-react"
 
 export default function Navbar() {
 	return (
@@ -24,6 +24,9 @@ export default function Navbar() {
 					</Button>
 					<Button size={"icon"} variant={"outline"}>
 						<IconShoppingCart />
+					</Button>
+					<Button size={"icon"} variant={"ghost"}>
+						<IconMenu2 />
 					</Button>
 				</div>
 			</div>
