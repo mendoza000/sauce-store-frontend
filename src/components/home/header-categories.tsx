@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export default function HeaderCategories() {
 	return (
-		<div className="col-span-1 border-r-2 pr-5 border-zinc-300">
+		<div className="w-full">
 			<strong className="">Categories</strong>
 			<ul className="mt-3">
 				<li>
