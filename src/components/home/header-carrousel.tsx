@@ -29,7 +29,6 @@ export default function HeaderCarrousel() {
 		setCurrent(api.selectedScrollSnap() + 1)
 
 		api.on("select", () => {
-			console.log("current")
 			setCurrent(api.selectedScrollSnap() + 1)
 		})
 	}, [api])
@@ -138,21 +137,19 @@ export default function HeaderCarrousel() {
 			<CarouselNext className="hidden md:flex" />
 
 			<div className="py-2 text-center justify-center flex gap-5">
-				{/* Slide {current} of {count} */}
-
 				<div
-					className={`h-3 w-3 bg-black/20 rounded-full duration-200 ${
-						current === 1 ? "bg-black/100" : ""
+					className={`h-3 w-3  rounded-full duration-200 ${
+						current == 1 ? "bg-black/100" : "bg-black/20"
 					}`}
 				></div>
 				<div
-					className={`h-3 w-3 bg-black/20 rounded-full duration-200 ${
-						current === 2 ? "bg-black/100" : ""
+					className={`h-3 w-3  rounded-full duration-200 ${
+						current === 2 ? "bg-black/100" : "bg-black/20"
 					}`}
 				></div>
 				<div
-					className={`h-3 w-3 bg-black/20 rounded-full duration-200 ${
-						current === 3 ? "bg-black/100" : ""
+					className={`h-3 w-3  rounded-full duration-200 ${
+						current === 3 ? "bg-black/100" : "bg-black/20"
 					}`}
 				></div>
 			</div>
