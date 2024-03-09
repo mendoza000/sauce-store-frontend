@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import { Card, CardContent } from "../ui/card"
 import {
@@ -6,14 +8,34 @@ import {
 	CarouselItem,
 	CarouselPrevious,
 	CarouselNext,
+	type CarouselApi,
 } from "../ui/carousel"
 import { AspectRatio } from "../ui/aspect-ratio"
 import { Button } from "../ui/button"
 import { IconChevronRight } from "@tabler/icons-react"
+import { useEffect, useState } from "react"
 
 export default function HeaderCarrousel() {
+	const [api, setApi] = useState<CarouselApi>()
+	const [current, setCurrent] = useState(0)
+	const [count, setCount] = useState(0)
+
+	useEffect(() => {
+		if (!api) {
+			return
+		}
+
+		setCount(api.scrollSnapList().length)
+		setCurrent(api.selectedScrollSnap() + 1)
+
+		api.on("select", () => {
+			console.log("current")
+			setCurrent(api.selectedScrollSnap() + 1)
+		})
+	}, [api])
+
 	return (
-		<Carousel className="w-full px-0">
+		<Carousel setApi={setApi} className="w-full px-0">
 			<CarouselContent>
 				<CarouselItem>
 					<div className="p-1">
@@ -114,6 +136,26 @@ export default function HeaderCarrousel() {
 			</CarouselContent>
 			<CarouselPrevious className="hidden md:flex" />
 			<CarouselNext className="hidden md:flex" />
+
+			<div className="py-2 text-center justify-center flex gap-5">
+				{/* Slide {current} of {count} */}
+
+				<div
+					className={`h-3 w-3 bg-black/20 rounded-full duration-200 ${
+						current === 1 ? "bg-black/100" : ""
+					}`}
+				></div>
+				<div
+					className={`h-3 w-3 bg-black/20 rounded-full duration-200 ${
+						current === 2 ? "bg-black/100" : ""
+					}`}
+				></div>
+				<div
+					className={`h-3 w-3 bg-black/20 rounded-full duration-200 ${
+						current === 3 ? "bg-black/100" : ""
+					}`}
+				></div>
+			</div>
 		</Carousel>
 	)
 }
