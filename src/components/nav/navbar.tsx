@@ -17,10 +17,18 @@ export default function Navbar() {
 			<div className="max-w-7xl px-5 mx-auto grid grid-cols-2 md:grid-cols-6 items-center py-4">
 				<strong className="text-xl lg:col-span-2">Sauce</strong>
 				<div className="md:flex gap-5 mx-auto hidden md:col-span-4 lg:col-span-2">
-					<Link href={"/"}>Inicio</Link>
-					<Link href={"/"}>Contacto</Link>
-					<Link href={"/"}>Nosotros</Link>
-					<Link href={"/"}>Cuenta </Link>
+					<Link className="hover:underline duration-200" href={"/"}>
+						Inicio
+					</Link>
+					<Link className="hover:underline duration-200" href={"/"}>
+						Contacto
+					</Link>
+					<Link className="hover:underline duration-200" href={"/"}>
+						Nosotros
+					</Link>
+					<Link className="hover:underline duration-200" href={"/"}>
+						Cuenta{" "}
+					</Link>
 				</div>
 				<div className="flex gap-3 justify-end lg:col-span-2">
 					<Input
@@ -35,7 +43,7 @@ export default function Navbar() {
 					</Button>
 
 					<Sheet>
-						<SheetTrigger>
+						<SheetTrigger asChild>
 							<Button
 								size={"icon"}
 								variant={"ghost"}
