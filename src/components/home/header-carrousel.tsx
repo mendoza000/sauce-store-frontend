@@ -30,8 +30,8 @@ export default function HeaderCarrousel() {
 	return (
 		<Carousel setApi={setApi} className="w-full px-0">
 			<CarrouselList />
-			<CarouselPrevious className="hidden md:flex" />
-			<CarouselNext className="hidden md:flex" />
+			<CarouselPrevious className="hidden lg:flex" />
+			<CarouselNext className="hidden lg:flex" />
 
 			<div className="py-2 text-center justify-center flex gap-5">
 				<div
