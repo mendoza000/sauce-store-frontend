@@ -8,6 +8,7 @@ import {
 } from "../ui/carousel"
 import { useEffect, useState } from "react"
 import CarrouselList from "./carrousel/carrousel-list"
+import Autoplay from "embla-carousel-autoplay"
 
 export default function HeaderCarrousel() {
 	const [api, setApi] = useState<CarouselApi>()
@@ -28,7 +29,15 @@ export default function HeaderCarrousel() {
 	}, [api])
 
 	return (
-		<Carousel setApi={setApi} className="w-full px-0">
+		<Carousel
+			setApi={setApi}
+			className="w-full px-0"
+			plugins={[
+				Autoplay({
+					delay: 5000,
+				}),
+			]}
+		>
 			<CarrouselList />
 			<CarouselPrevious className="hidden lg:flex" />
 			<CarouselNext className="hidden lg:flex" />
