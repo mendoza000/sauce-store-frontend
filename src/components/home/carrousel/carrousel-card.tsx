@@ -21,7 +21,7 @@ export default function CarrouselCard(props: Props) {
 							<h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-7xl font-bold text-white leading-tight mt-10 md:mt-0">
 								{props.title}
 							</h1>
-							<p className="text-md sm:text-md md:text-base lg:text-xl text-white/70 leading-relaxed  max-w-md lg:max-w-5xl mx-auto lg:mx-0 -mt-20">
+							<p className="text-md sm:text-md md:text-base lg:text-xl text-white/70 leading-relaxed  max-w-md lg:max-w-5xl mx-auto lg:mx-0 -mt-20 md:mt-0">
 								{props.description}
 							</p>
 
