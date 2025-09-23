@@ -59,11 +59,10 @@ export default function CarrouselList() {
 						Únete a miles de sneakerheads que confían en nosotros. <br />
 						Con +5 años en el mercado, tenemos una reputación sólida basada en{" "}
 						<strong>confianza, calidad y servicio excepcional</strong>. <br />
-						¿Dudas? Nuestro equipo experto está aquí para ayudarte.
 					</>
 				}
 				textButton="Contáctanos"
-				title="Construyendo Confianza Paso a Paso"
+				title="Construyendo confianza"
 			>
 				<Image
 					src={"/cajas3.png"}

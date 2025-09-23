@@ -6,14 +6,15 @@ import PromotionSection from "@/components/home/promotion-section"
 import SauceInformation from "@/components/home/sauce-information"
 
 export default function Home() {
-  return (
-    <main className="">
-      <Header />
-      <PromotionSection />
-      <BestSellingSection />
-      <DeliveryAd />
-      <OurProducts />
-      <SauceInformation />
-    </main>
-  )
+	return (
+		<main className="">
+			<Header />
+			<PromotionSection />
+			<BestSellingSection />
+			<DeliveryAd />
+			<OurProducts />
+			<SauceInformation />
+			{/* <BrandLoop /> */}
+		</main>
+	)
 }
