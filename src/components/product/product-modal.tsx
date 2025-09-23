@@ -34,12 +34,42 @@ interface ProductContentProps {
 	onSizeSelect: (size: string) => void
 }
 
+// Componente Loader
+function ImageLoader() {
+	return (
+		<div className="absolute inset-0 flex items-center justify-center bg-gray-100 animate-pulse">
+			<div className="flex flex-col items-center space-y-2">
+				<div className="w-8 h-8 border-2 border-gray-300 border-t-black rounded-full animate-spin" />
+				<p className="text-sm text-gray-500 font-medium">Cargando...</p>
+			</div>
+		</div>
+	)
+}
+
 function ProductContent({
 	product,
 	selectedSize,
 	onSizeSelect,
 }: ProductContentProps) {
 	const isMobile = useIsMobile()
+	const [imageLoading, setImageLoading] = useState(true)
+	const [showImage, setShowImage] = useState(false)
+
+	// Simular carga de imagen con delay de 1.5 segundos
+	useEffect(() => {
+		if (product?.imageURL) {
+			setImageLoading(true)
+			setShowImage(false)
+
+			const timer = setTimeout(() => {
+				setImageLoading(false)
+				// Pequeño delay adicional para la transición
+				setTimeout(() => setShowImage(true), 50)
+			}, 500)
+
+			return () => clearTimeout(timer)
+		}
+	}, [product?.imageURL])
 
 	return (
 		<div className={cn("space-y-4", isMobile ? "pb-4" : "py-4")}>
@@ -50,11 +80,19 @@ function ProductContent({
 					isMobile ? "aspect-[4/3] max-h-[250px] mx-auto" : "aspect-square"
 				)}
 			>
+				{imageLoading && <ImageLoader />}
 				<Image
 					src={product.imageURL}
 					alt={product.imageAlt}
 					fill
-					className="object-cover"
+					className={cn(
+						"object-cover transition-opacity duration-500 ease-in-out",
+						showImage && !imageLoading ? "opacity-100" : "opacity-0"
+					)}
+					onLoad={() => {
+						// Esta función se ejecuta cuando la imagen real se carga
+						// pero mantenemos el control del estado con nuestro timer
+					}}
 				/>
 			</div>
 
@@ -105,7 +143,10 @@ function ProductContent({
 				{/* Color */}
 				<div className="space-y-2">
 					<p className="text-sm font-medium">Color:</p>
-					<Badge variant="secondary" className="w-fit">
+					<Badge
+						variant="secondary"
+						className="w-fit transition-all duration-200 hover:scale-105"
+					>
 						{product.color}
 					</Badge>
 				</div>
@@ -121,10 +162,10 @@ function ProductContent({
 									variant={selectedSize === size ? "default" : "outline"}
 									size="sm"
 									className={cn(
-										"h-10 font-medium transition-all",
+										"h-10 font-medium transition-all duration-200 hover:scale-105 active:scale-95",
 										selectedSize === size
-											? "bg-black text-white hover:bg-black/90"
-											: "hover:border-black"
+											? "bg-black text-white hover:bg-black/90 scale-105 shadow-md"
+											: "hover:border-black hover:shadow-sm"
 									)}
 									onClick={() => onSizeSelect(size)}
 								>
@@ -133,9 +174,9 @@ function ProductContent({
 							))}
 						</div>
 						{selectedSize && (
-							<p className="text-xs text-muted-foreground font-medium">
+							<p className="text-xs text-muted-foreground font-medium transition-all duration-300">
 								Talla seleccionada:{" "}
-								<span className="text-black">{selectedSize}</span>
+								<span className="text-black font-semibold">{selectedSize}</span>
 							</p>
 						)}
 					</div>
@@ -214,7 +255,7 @@ function AddToCartButton({ product, selectedSize }: AddToCartButtonProps) {
 
 	return (
 		<Button
-			className="w-full h-12 font-medium"
+			className="w-full h-12 font-medium transition-all duration-200 hover:scale-[0.98] active:scale-95 disabled:hover:scale-100"
 			disabled={
 				!product.inStock ||
 				(product.sizes && product.sizes.length > 0 && !selectedSize)
@@ -287,11 +328,6 @@ export function ProductModal() {
 						product={selectedProduct}
 						selectedSize={selectedSize}
 					/>
-					<DrawerClose asChild>
-						<Button variant="outline" className="w-full">
-							Cerrar
-						</Button>
-					</DrawerClose>
 				</DrawerFooter>
 			</DrawerContent>
 		</Drawer>
