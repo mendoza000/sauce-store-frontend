@@ -64,12 +64,16 @@ export default function CarrouselList() {
 				textButton="Contáctanos"
 				title="Construyendo confianza"
 			>
-				<Image
-					src={"/cajas3.png"}
-					alt="Trust and Quality"
-					width={700}
-					height={700}
-				/>
+				<div className="relative">
+					<div className="absolute bg-zinc-900 w-[30rem] h-20 blur-lg -right-44 top-14 z-40" />
+					<Image
+						src={"/airmax2.png"}
+						alt="Trust and Quality"
+						width={500}
+						height={500}
+						className="xl:scale-125 rotate-90 xl:right-28 top-10 relative"
+					/>
+				</div>
 			</CarrouselCard>
 		</CarouselContent>
 	)

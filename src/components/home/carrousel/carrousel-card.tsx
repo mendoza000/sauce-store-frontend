@@ -16,7 +16,7 @@ export default function CarrouselCard(props: Props) {
 		<CarouselItem>
 			<div className="p-1">
 				<Card className="overflow-hidden relative bg-black/90 min-h-[60vh] md:min-h-[60vh]">
-					<CardContent className="flex items-center justify-center lg:justify-between lg:mx-40 mx-4 p-4 md:p-6 flex-col lg:flex-row min-h-[60vh] md:min-h-[60vh] px-0">
+					<CardContent className="flex items-center justify-center lg:justify-between xl:mx-20 mx-4 p-4 lg:p-6 flex-col lg:flex-row min-h-[60vh] md:min-h-[60vh] px-0">
 						<div className="text-center lg:text-left w-full lg:w-auto flex flex-col justify-between md:justify-center md:space-y-6 h-full min-h-[60vh]">
 							<h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-7xl font-bold text-white leading-tight mt-10 md:mt-0">
 								{props.title}
