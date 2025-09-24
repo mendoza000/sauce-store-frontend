@@ -3,6 +3,7 @@ import { Chivo } from "next/font/google"
 import "./globals.css"
 import type React from "react"
 import Navbar from "@/components/nav/navbar"
+import Footer from "@/components/commons/footer"
 import { ProductModal } from "@/components/product/product-modal"
 import { Toaster } from "@/components/ui/sonner"
 
@@ -26,6 +27,7 @@ export default function RootLayout({
 			<body className={chivo.className}>
 				<Navbar />
 				{children}
+				<Footer />
 				<ProductModal />
 				<Toaster />
 			</body>
