@@ -16,21 +16,18 @@ import { FavoritesDrawer } from "../favorites/favorites-drawer"
 
 export default function Navbar() {
 	return (
-		<nav className=" border-b-2 border-zinc-300">
+		<nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b-2 border-zinc-300">
 			<div className="max-w-7xl px-5 mx-auto grid grid-cols-2 md:grid-cols-6 items-center py-4">
 				<strong className="text-xl lg:col-span-2">Sauce</strong>
 				<div className="md:flex gap-5 mx-auto hidden md:col-span-4 lg:col-span-2">
 					<Link className="hover:underline duration-200" href={"/"}>
 						Inicio
 					</Link>
-					<Link className="hover:underline duration-200" href={"/"}>
-						Contacto
+					<Link className="hover:underline duration-200" href={"/products"}>
+						Productos
 					</Link>
 					<Link className="hover:underline duration-200" href={"/"}>
 						Nosotros
-					</Link>
-					<Link className="hover:underline duration-200" href={"/"}>
-						Cuenta{" "}
 					</Link>
 				</div>
 				<div className="flex gap-3 justify-end lg:col-span-2">
