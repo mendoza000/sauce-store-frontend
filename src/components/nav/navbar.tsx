@@ -23,7 +23,7 @@ export default function Navbar() {
 					<Link className="hover:underline duration-200" href={"/"}>
 						Inicio
 					</Link>
-					<Link className="hover:underline duration-200" href={"/products"}>
+					<Link className="hover:underline duration-200" href={"/productos"}>
 						Productos
 					</Link>
 					<Link className="hover:underline duration-200" href={"/"}>
@@ -57,14 +57,14 @@ export default function Navbar() {
 									<Link className="hover:underline duration-200" href={"/"}>
 										Inicio
 									</Link>
-									<Link className="hover:underline duration-200" href={"/"}>
-										Contacto
+									<Link
+										className="hover:underline duration-200"
+										href={"/productos"}
+									>
+										Productos
 									</Link>
 									<Link className="hover:underline duration-200" href={"/"}>
 										Nosotros
-									</Link>
-									<Link className="hover:underline duration-200" href={"/"}>
-										Cuenta{" "}
 									</Link>
 								</div>
 							</SheetHeader>
