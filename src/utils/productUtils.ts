@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from "uuid"
 
 export interface ProductData {
+	slug: string
 	title: string
 	brand: string
 	price: number
@@ -18,61 +19,31 @@ export interface ProductData {
 
 export interface Product extends ProductData {
 	id: string
-	slug: string
 }
 
-/**
- * Genera un slug a partir del título del producto
- */
-function generateSlug(title: string, id: string): string {
-	return (
-		title
-			.toLowerCase()
-			.replace(/[^a-z0-9\s-]/g, "") // Remover caracteres especiales
-			.replace(/\s+/g, "-") // Reemplazar espacios con guiones
-			.replace(/-+/g, "-") // Remover guiones múltiples
-			.trim() +
-		"-" +
-		id.slice(0, 8)
-	) // Agregar parte del ID para unicidad
+const DEFAULT_PRODUCT_VALUES = {
+	inStock: true,
+	promotion: false,
+	description: "Descripción del producto disponible próximamente.",
+	sizes: ["38", "39", "40", "41", "42", "43", "44", "45"],
+	category: "Sneakers",
+	features: ["Comodidad superior", "Diseño versátil", "Materiales de calidad"],
 }
 
-/**
- * Genera un producto con un UUID único y slug
- */
 export function createProduct(productData: ProductData): Product {
-	const id = uuidv4()
-	const slug = generateSlug(productData.title, id)
-
 	return {
-		id,
-		slug,
-		inStock: true,
-		promotion: false,
-		description: "Descripción del producto disponible próximamente.",
-		sizes: ["38", "39", "40", "41", "42", "43", "44", "45"],
-		category: "Sneakers",
-		features: [
-			"Comodidad superior",
-			"Diseño versátil",
-			"Materiales de calidad",
-		],
+		id: uuidv4(),
+		...DEFAULT_PRODUCT_VALUES,
 		...productData,
 	}
 }
 
-/**
- * Genera múltiples productos con UUIDs únicos
- */
 export function createProducts(productsData: ProductData[]): Product[] {
 	return productsData.map(createProduct)
 }
-
-/**
- * Datos de productos de muestra
- */
 export const SAMPLE_PRODUCTS_DATA: ProductData[] = [
 	{
+		slug: "nike-dunk-low-panda",
 		title: "Nike Dunk Low Panda",
 		brand: "Nike",
 		price: 120,
@@ -94,6 +65,7 @@ export const SAMPLE_PRODUCTS_DATA: ProductData[] = [
 		sizes: ["38", "39", "40", "41", "42", "43", "44", "45"],
 	},
 	{
+		slug: "nike-air-max-90",
 		title: "Air Max 90",
 		brand: "Nike",
 		price: 130,
@@ -115,6 +87,7 @@ export const SAMPLE_PRODUCTS_DATA: ProductData[] = [
 		sizes: ["38", "39", "40", "41", "42", "43", "44", "45", "46"],
 	},
 	{
+		slug: "nike-ajko-low-bred",
 		title: "Nike AJKO Low Bred",
 		brand: "Nike",
 		price: 140,
@@ -137,6 +110,7 @@ export const SAMPLE_PRODUCTS_DATA: ProductData[] = [
 	},
 
 	{
+		slug: "nike-dunk-low-panda-v2",
 		title: "Nike Dunk Low Panda",
 		brand: "Nike",
 		price: 120,
@@ -158,6 +132,7 @@ export const SAMPLE_PRODUCTS_DATA: ProductData[] = [
 		sizes: ["38", "39", "40", "41", "42", "43", "44", "45"],
 	},
 	{
+		slug: "nike-air-max-90-v2",
 		title: "Air Max 90",
 		brand: "Nike",
 		price: 130,
@@ -179,6 +154,7 @@ export const SAMPLE_PRODUCTS_DATA: ProductData[] = [
 		sizes: ["38", "39", "40", "41", "42", "43", "44", "45", "46"],
 	},
 	{
+		slug: "nike-ajko-low-bred-v2",
 		title: "Nike AJKO Low Bred",
 		brand: "Nike",
 		price: 140,
@@ -201,9 +177,6 @@ export const SAMPLE_PRODUCTS_DATA: ProductData[] = [
 	},
 ]
 
-/**
- * Buscar producto por slug
- */
 export function findProductBySlug(
 	products: Product[],
 	slug: string

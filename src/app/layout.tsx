@@ -2,9 +2,12 @@ import type { Metadata } from "next"
 import { Chivo } from "next/font/google"
 import "./globals.css"
 import type React from "react"
+import { Suspense } from "react"
 import Navbar from "@/components/nav/navbar"
 import Footer from "@/components/commons/footer"
 import { ProductModal } from "@/components/product/product-modal"
+import { ProductStoreInitializer } from "@/components/product/product-store-initializer"
+import { ProductUrlSync } from "@/components/product/product-url-sync"
 import { Toaster } from "@/components/ui/sonner"
 
 const chivo = Chivo({
@@ -25,11 +28,15 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body className={chivo.className}>
+				<ProductStoreInitializer />
 				<Navbar />
 				{children}
 				<Footer />
 				<ProductModal />
 				<Toaster />
+				<Suspense fallback={null}>
+					<ProductUrlSync />
+				</Suspense>
 			</body>
 		</html>
 	)

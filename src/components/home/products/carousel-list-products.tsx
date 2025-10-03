@@ -1,22 +1,16 @@
 "use client"
 
-import { useMemo } from "react"
 import {
 	Carousel,
 	CarouselContent,
 	CarouselItem,
 } from "@/components/ui/carousel"
 import ProductCard from "@/components/ui/product-card"
-import { createProducts, SAMPLE_PRODUCTS_DATA } from "@/utils/productUtils"
+import { ALL_PRODUCTS } from "@/utils/products"
 
 export default function CarouselListProducts() {
-	// Generar los productos con UUIDs únicos - duplicamos algunos para el carrusel
-	const products = useMemo(() => {
-		return createProducts([
-			...SAMPLE_PRODUCTS_DATA,
-			...SAMPLE_PRODUCTS_DATA, // Duplicar para tener más elementos en el carrusel
-		])
-	}, [])
+	// Usar productos generados de forma consistente
+	const products = ALL_PRODUCTS
 	return (
 		<Carousel
 			className="mt-7"

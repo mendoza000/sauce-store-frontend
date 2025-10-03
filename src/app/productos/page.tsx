@@ -1,7 +1,7 @@
 "use client"
 
 import CategoriesSide from "@/components/categories/categories-side"
-import { createProducts, SAMPLE_PRODUCTS_DATA } from "@/utils/productUtils"
+import { ALL_PRODUCTS } from "@/utils/products"
 import { useFilteredProducts } from "@/hooks/use-filtered-products"
 import { useFilterStore } from "@/stores/filter-store"
 import { Badge } from "@/components/ui/badge"
@@ -11,8 +11,8 @@ import { SortDropdown } from "@/components/product/sort-dropdown"
 import { X } from "lucide-react"
 
 function ProductsPage() {
-	// Generar productos de muestra
-	const allProducts = createProducts(SAMPLE_PRODUCTS_DATA)
+	// Usar productos generados de forma consistente
+	const allProducts = ALL_PRODUCTS
 
 	// Aplicar filtros
 	const { filteredProducts, filterStats } = useFilteredProducts(allProducts)
